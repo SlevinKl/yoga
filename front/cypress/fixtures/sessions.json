@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Session Test",
+    "description": "Session Test Description",
+    "date": "2024/01/01",
+    "teacher_id": 1,
+    "users": [0],
+    "createdAt": "2024/01/01",
+    "updatedAt": "2024/01/01"
+  },
+  {
+    "id": 2,
+    "name": "Session Test 2",
+    "description": "Session Test Description 2",
+    "date": "2024/01/01",
+    "teacher_id": 2,
+    "users": [1],
+    "createdAt": "2024/01/01",
+    "updatedAt": "2024/01/01"
+  }
+]

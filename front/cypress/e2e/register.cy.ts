@@ -6,9 +6,10 @@ describe('Register test e2e', () => {
   });
 
   it('should register a user', () => {
-    const user = require('../fixtures/registerUser.json');
+    const user = require('../fixtures/register-user.json');
     registerPage.visit();
     registerPage.fillRegistrationForm(user);
     registerPage.submitForm();
+    cy.url().should('include', '/login');
   });
 });
