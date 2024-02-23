@@ -2,30 +2,17 @@ import { loginPage } from '../pages/login.page';
 import { sessionPage } from '../pages/session.page';
 
 describe('Session user test e2e', () => {
+  const mockUser = require("../fixtures/login-user.json");
   const mockTeachers = require("../fixtures/teachers.json");
   const mockSessions = require("../fixtures/sessions.json");
   const mockDateSession = '2024-01-01'
 
   beforeEach(() => {
-    cy.intercept('POST', '/api/auth/login', {
-      body: {
-        id: 1,
-        username: 'userName',
-        firstName: 'firstName',
-        lastName: 'lastName',
-        admin: false
-      },
-    })
-  })
-
-  beforeEach(() => {
+    cy.intercept('POST', '/api/auth/login', { body: mockUser })
     cy.intercept('POST', '/api/session/1/participate/1', {
       body: 'Participation successful',
       statusCode: 200,
     }).as('participationRequest');
-  })
-
-  beforeEach(() => {
     cy.intercept('GET', 'api/teacher', {
       body: mockTeachers,
     })
@@ -66,20 +53,14 @@ describe('Session user test e2e', () => {
       createdAt: mockDateSession,
       updatedAt: mockDateSession,
     }]
-    cy.intercept('GET', 'api/session/1', {
-      body: mockSessions[0],
-    }).as('firstSession')
-    cy.intercept('GET', 'api/session', {
-      body: mockSessions,
-    })
+    cy.intercept('GET', 'api/session/1', { body: mockSessions[0] })
+    cy.intercept('GET', 'api/session', { body: mockSessions })
     const user = require("../fixtures/login-user.json");
     loginPage.visit()
     loginPage.fillLoginForm(user)
     loginPage.submitForm()
     sessionPage.checkUrlIncludes('/sessions')
-    cy.intercept('GET', 'api/session/1', {
-      body : mockSessionsUnparticipate[0]
-    })
+    cy.intercept('GET', 'api/session/1', { body : mockSessionsUnparticipate[0] })
     sessionPage.detail()
     sessionPage.checkUrlIncludes('/sessions/detail/1')
     sessionPage.unparticipate()
