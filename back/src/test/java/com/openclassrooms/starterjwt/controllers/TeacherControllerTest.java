@@ -42,7 +42,7 @@ public class TeacherControllerTest {
     @InjectMocks
     private TeacherController teacherController;
 
-    private final String id = "10";
+    private final long id = 1L;
 
     private MockMvc mockMvc;
 
@@ -62,7 +62,7 @@ public class TeacherControllerTest {
         teacher.setLastName("Dupont");
         TeacherDto expectedTeacherDto = teacherMapper.toDto(teacher);
         // Stub teacherRepository.findById
-        when(teacherRepository.findById(Long.parseLong(id))).thenReturn(Optional.of(teacher));
+        when(teacherRepository.findById(id)).thenReturn(Optional.of(teacher));
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.get("/api/teacher/{id}", id))
@@ -72,7 +72,7 @@ public class TeacherControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.firstName").value(expectedTeacherDto.getFirstName()));
 
         // Verify the response
-        verify(teacherRepository).findById(Long.parseLong(id));
+        verify(teacherRepository).findById(id);
     }
 
 
@@ -80,28 +80,28 @@ public class TeacherControllerTest {
     @DisplayName("should return not found status")
     void giveIDTeacher_thenFindTeacherById_shouldReturnNotFoundStatus() throws Exception {
         // Stub teacherRepository.findById
-        when(teacherRepository.findById(Long.parseLong(id))).thenReturn(Optional.empty());
+        when(teacherRepository.findById(id)).thenReturn(Optional.empty());
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.get("/api/teacher/{id}", id))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
 
         // Verify the response
-        verify(teacherRepository).findById(Long.parseLong(id));
+        verify(teacherRepository).findById(id);
     }
 
     @Test
     @DisplayName("should return bad request status")
     void giveIDTeacher_thenFindTeacherById_shouldReturnBadRequestStatus() throws Exception {
         // Stub teacherRepository.findById
-        when(teacherRepository.findById(Long.parseLong(id))).thenThrow(NumberFormatException.class);
+        when(teacherRepository.findById(id)).thenThrow(NumberFormatException.class);
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.get("/api/teacher/{id}", id))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
 
         // Verify the response
-        verify(teacherRepository).findById(Long.parseLong(id));
+        verify(teacherRepository).findById(id);
     }
 
 
