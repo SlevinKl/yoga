@@ -1,5 +1,5 @@
 export const sessionPage = {
-  visit: () => cy.visit('/sessions'),
+  visit: () => cy.visit('/session'),
   checkUrlIncludes: (url: string) => cy.url().should('include', url),
 
   matCardItems: () => cy.get('mat-card.item'),
