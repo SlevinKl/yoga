@@ -45,7 +45,7 @@ public class UserControllerTest {
 
     private MockMvc mockMvc;
 
-    private final String id = "10";
+    private final long id = 1L;
 
     @BeforeEach
     void setUp(){
@@ -64,7 +64,7 @@ public class UserControllerTest {
         user.setFirstName("test");
         UserDto expectedUserDto = userMapper.toDto(user);
         // Stub userRepository.findById
-        when(userRepository.findById(Long.parseLong(id))).thenReturn(Optional.of(user));
+        when(userRepository.findById(id)).thenReturn(Optional.of(user));
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user/{id}", id))
@@ -74,7 +74,7 @@ public class UserControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.lastName").value(expectedUserDto.getLastName()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.firstName").value(expectedUserDto.getFirstName()));
         // Verify the response
-        verify(userRepository).findById(Long.parseLong(id));
+        verify(userRepository).findById(id);
     }
 
     @Test
@@ -93,27 +93,27 @@ public class UserControllerTest {
         // Stub securityContext.getAuthentication and return user details
         when(securityContext.getAuthentication()).thenReturn(new UsernamePasswordAuthenticationToken(userDetails, null));
         // Stub userRepository.findById
-        when(userRepository.findById(Long.parseLong(id))).thenReturn(Optional.of(user));
+        when(userRepository.findById(id)).thenReturn(Optional.of(user));
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/user/{id}", id))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
         // Verify the response
-        verify(userRepository).findById(Long.parseLong(id));
+        verify(userRepository).findById(id);
     }
 
     @Test
     @DisplayName("Throw not found user")
     void giveIDUser_thenFindUserById_shouldNotFoundUser() throws Exception {
         // Stub userRepository.findById
-        when(userRepository.findById(Long.parseLong(id))).thenReturn(Optional.empty());
+        when(userRepository.findById(id)).thenReturn(Optional.empty());
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user/{id}", id))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
         // Verify the response
-        verify(userRepository).findById(Long.parseLong(id));
+        verify(userRepository).findById(id);
     }
 
 
@@ -121,24 +121,24 @@ public class UserControllerTest {
     @DisplayName("Throw bad request error")
     void giveIDUser_thenFindUserById_shouldThrowBadRequestError() throws Exception {
         // Stub userRepository.findById
-        when(userRepository.findById(Long.parseLong(id))).thenThrow(NumberFormatException.class);
+        when(userRepository.findById(id)).thenThrow(NumberFormatException.class);
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user/{id}", id))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
         // Verify the response
-        verify(userRepository).findById(Long.parseLong(id));
+        verify(userRepository).findById(id);
     }
 
     @Test
     @DisplayName("Return not found status")
     void giveIDUser_thenFindUserById_shouldReturnNotFoundStatus() throws Exception {
-        when(userRepository.findById(Long.parseLong(id))).thenReturn(Optional.empty());
+        when(userRepository.findById(id)).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/user/{id}", id))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
 
-        verify(userRepository).findById(Long.parseLong(id));
+        verify(userRepository).findById(id);
     }
 
     @Test
@@ -155,27 +155,27 @@ public class UserControllerTest {
         when(securityContext.getAuthentication()).thenReturn(new UsernamePasswordAuthenticationToken(userDetails, null));
 
         // Stub userRepository.findById reutrn user
-        when(userRepository.findById(Long.parseLong(id))).thenReturn(Optional.of(user));
+        when(userRepository.findById(id)).thenReturn(Optional.of(user));
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/user/{id}", id))
                 .andExpect(MockMvcResultMatchers.status().isUnauthorized());
 
         // Verify the response
-        verify(userRepository).findById(Long.parseLong(id));
+        verify(userRepository).findById(id);
     }
 
     @Test
     @DisplayName("Return bad request status")
     void giveIDUser_thenFindUserById_shouldReturnBadRequestStatus() throws Exception {
         // Stub userRepository.findById and return error
-        when(userRepository.findById(Long.parseLong(id))).thenThrow(NumberFormatException.class);
+        when(userRepository.findById(id)).thenThrow(NumberFormatException.class);
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/user/{id}", id))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
 
         // Verify the response
-        verify(userRepository).findById(Long.parseLong(id));
+        verify(userRepository).findById(id);
     }
 }

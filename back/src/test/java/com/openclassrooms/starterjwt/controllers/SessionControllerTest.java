@@ -49,9 +49,8 @@ public class SessionControllerTest {
 
     private MockMvc mockMvc;
 
-    private final String id = "1";
-
     private ObjectMapper objectMapper;
+    private final long id = 1L;
 
     @BeforeEach
     void setUp(){
@@ -68,7 +67,7 @@ public class SessionControllerTest {
         Session session = new Session();
         session.setName("Yoga");
         // Stub
-        when(sessionRepository.findById(Long.parseLong(id))).thenReturn(Optional.of(session));
+        when(sessionRepository.findById(id)).thenReturn(Optional.of(session));
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.get("/api/session/{id}", id))
@@ -77,7 +76,7 @@ public class SessionControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Yoga"));
 
         // Verify the response
-        verify(sessionRepository).findById(Long.parseLong(id));
+        verify(sessionRepository).findById(id);
 
     }
 
@@ -85,28 +84,28 @@ public class SessionControllerTest {
     @DisplayName("Return not found status")
     void giveIDSession_thenFindSessionById_shouldNotFoundStatus() throws Exception {
         // Stub
-        when(sessionRepository.findById(Long.parseLong(id))).thenReturn(Optional.empty());
+        when(sessionRepository.findById(id)).thenReturn(Optional.empty());
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.get("/api/session/{id}", id))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
 
         // Verify the response
-        verify(sessionRepository).findById(Long.parseLong(id));
+        verify(sessionRepository).findById(id);
     }
 
     @Test
     @DisplayName("should return bad request's status")
     void giveIDSession_thenFindSessionById_shouldBadRequestStatus() throws Exception {
         // Stub
-        when(sessionRepository.findById(Long.parseLong(id))).thenThrow(NumberFormatException.class);
+        when(sessionRepository.findById(id)).thenThrow(NumberFormatException.class);
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.get("/api/session/{id}", id))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
 
         // Verify the response
-        verify(sessionRepository).findById(Long.parseLong(id));
+        verify(sessionRepository).findById(id);
     }
 
     @Test
@@ -168,7 +167,7 @@ public class SessionControllerTest {
         sessionDto.setDate(new Date());
         sessionDto.setDescription("Description session");
         sessionDto.setTeacher_id(1L);
-        sessionDto.setId(Long.parseLong(id));
+        sessionDto.setId(id);
 
         Session session = sessionMapper.toEntity(sessionDto);
 
@@ -178,7 +177,7 @@ public class SessionControllerTest {
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.put("/api/session/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(id)
+                        .content(String.valueOf(1L))
                         .content(objectMapper.writeValueAsString(sessionDto)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
@@ -199,7 +198,7 @@ public class SessionControllerTest {
         sessionDto.setDate(new Date());
         sessionDto.setDescription("Description session");
         sessionDto.setTeacher_id(1L);
-        sessionDto.setId(Long.parseLong(id));
+        sessionDto.setId(id);
 
         session = sessionMapper.toEntity(sessionDto);
 
@@ -209,7 +208,7 @@ public class SessionControllerTest {
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.put("/api/session/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(id)
+                        .contentType(String.valueOf(1L))
                         .content(objectMapper.writeValueAsString(sessionDto)))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
 
@@ -224,14 +223,14 @@ public class SessionControllerTest {
         Session session = new Session();
 
         // Stub
-        when(sessionRepository.findById(Long.parseLong(id))).thenReturn(Optional.of(session));
+        when(sessionRepository.findById(id)).thenReturn(Optional.of(session));
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/session/{id}", id))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
         // Verify the response
-        verify(sessionRepository).findById(Long.parseLong(id));
+        verify(sessionRepository).findById(id);
 
     }
 
@@ -239,28 +238,28 @@ public class SessionControllerTest {
     @DisplayName("Delete session and return not found status")
     void giveIDSession_thenFindSessionById_shouldReturnNotFoundStatus() throws Exception {
         // Stub
-        when(sessionRepository.findById(Long.parseLong(id))).thenReturn(Optional.empty());
+        when(sessionRepository.findById(id)).thenReturn(Optional.empty());
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/session/{id}", id))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
 
         // Verify the response
-        verify(sessionRepository).findById(Long.parseLong(id));
+        verify(sessionRepository).findById(id);
     }
 
     @Test
     @DisplayName("Delete session and return bad request's status")
     void giveIDSession_thenFindSessionById_shouldReturnBadRequestStatus() throws Exception {
         // Stub
-        when(sessionRepository.findById(Long.parseLong(id))).thenThrow(NumberFormatException.class);
+        when(sessionRepository.findById(id)).thenThrow(NumberFormatException.class);
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/session/{id}", id))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
 
         // Verify the response
-        verify(sessionRepository).findById(Long.parseLong(id));
+        verify(sessionRepository).findById(id);
     }
 
     @Test
@@ -269,20 +268,20 @@ public class SessionControllerTest {
         // Create session and user
         Session session = new Session();
         User user = new User();
-        session.setId(Long.parseLong(id));
+        session.setId(id);
         session.setUsers(new ArrayList<>());
 
         // Stub
-        when(sessionRepository.findById(Long.parseLong(id))).thenReturn(Optional.of(session));
-        when(userRepository.findById(Long.parseLong(id))).thenReturn(Optional.of(user));
+        when(sessionRepository.findById(id)).thenReturn(Optional.of(session));
+        when(userRepository.findById(id)).thenReturn(Optional.of(user));
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.post("/api/session/{id}/participate/{userId}", id, id))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
         // Verify the response
-        verify(sessionRepository).findById(Long.parseLong(id));
-        verify(userRepository).findById(Long.parseLong(id));
+        verify(sessionRepository).findById(id);
+        verify(userRepository).findById(id);
         assert(session.getUsers().contains(user));
     }
 
@@ -290,28 +289,28 @@ public class SessionControllerTest {
     @DisplayName("Participate to session but return bad request's status")
     void giveIDSession_thenUserParticipateToASession_shouldReturnBadRequestStatus() throws Exception {
         // Stub
-        when(sessionRepository.findById(Long.parseLong(id))).thenThrow(NumberFormatException.class);
+        when(sessionRepository.findById(id)).thenThrow(NumberFormatException.class);
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.post("/api/session/{id}/participate/{userId}", id, id))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
 
         // Verify the response
-        verify(sessionRepository).findById(Long.parseLong(id));
+        verify(sessionRepository).findById(id);
     }
 
     @Test
     @DisplayName("Unparticipate to session but return bad request's status")
     void giveIDSession_thenUserUnparticipateToASession_shouldReturnBadRequestStatus() throws Exception {
         // Stub
-        when(sessionRepository.findById(Long.parseLong(id))).thenThrow(NumberFormatException.class);
+        when(sessionRepository.findById(id)).thenThrow(NumberFormatException.class);
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/session/{id}/participate/{userId}", id, id))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
 
         // Verify the response
-        verify(sessionRepository).findById(Long.parseLong(id));
+        verify(sessionRepository).findById(id);
     }
 
 
@@ -321,19 +320,19 @@ public class SessionControllerTest {
         // Create session and user
         Session session = new Session();
         User user = new User();
-        user.setId(Long.parseLong(id));
-        session.setId(Long.parseLong(id));
+        user.setId(id);
+        session.setId(id);
         // Add user to session
         session.setUsers(List.of(user));
         // Stub
-        when(sessionRepository.findById(Long.parseLong(id))).thenReturn(Optional.of(session));
+        when(sessionRepository.findById(id)).thenReturn(Optional.of(session));
 
         // Perform request
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/session/{id}/participate/{userId}", id, id))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
         // Verify the response
-        verify(sessionRepository).findById(Long.parseLong(id));
+        verify(sessionRepository).findById(id);
 
         assert(!session.getUsers().contains(user));
     }
