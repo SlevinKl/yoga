@@ -1,9 +1,6 @@
 export const sessionPage = {
   visit: () => cy.visit('/sessions'),
   checkUrlIncludes: (url: string) => cy.url().should('include', url),
-
-  matCardItems: () => cy.get('mat-card.item'),
-
   participate: () => cy.get('button').contains('Participate').click(),
   unparticipate: () => cy.get('button').contains('Do not participate').click(),
   detail: () => cy.get('button').contains('Detail').click(),

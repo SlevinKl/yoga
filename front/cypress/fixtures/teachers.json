@@ -1,16 +1,16 @@
 [
   {  
     "id": 1,
-    "lastName": "Doe",
     "firstName": "John",
+    "lastName": "Doe",
     "createdAt": "2024/01/01",
     "updatedAt": "2024/01/01"
   },
   { 
     "id": 2,
-    "lastName": "Jane",
-    "firstName": "Doe",
+    "firstName": "Jane",
+    "lastName": "Doe",
     "createdAt": "2024/01/01",
     "updatedAt": "2024/01/01"
-  },
+  }
 ]

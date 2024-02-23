@@ -1,6 +1,29 @@
 {
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/services/session.service.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/services/session.service.ts",
+  "/Users/rayanemoula/code/yoga/front/src/polyfills.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/polyfills.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {},
+    "inputSourceMap": {
+      "version": 3,
+      "mappings": "AAAA;;;;;;;;;;;;;;;;AAgBA;;;;AAIA;;;;;;;;;;;;;;;;;;;;;;;;AAwBA;;;AAGA,OAAO,SAAP,C,CAAmB;;AAGnB",
+      "names": [],
+      "sourceRoot": "",
+      "sources": [
+        "/Users/rayanemoula/code/yoga/front/src/polyfills.ts"
+      ],
+      "sourcesContent": [
+        "/**\n * This file includes polyfills needed by Angular and is loaded before the app.\n * You can add your own extra polyfills to this file.\n *\n * This file is divided into 2 sections:\n *   1. Browser polyfills. These are applied before loading ZoneJS and are sorted by browsers.\n *   2. Application imports. Files imported after ZoneJS that should be loaded before your main\n *      file.\n *\n * The current setup is for so-called \"evergreen\" browsers; the last versions of browsers that\n * automatically update themselves. This includes recent versions of Safari, Chrome (including\n * Opera), Edge on the desktop, and iOS and Chrome on mobile.\n *\n * Learn more in https://angular.io/guide/browser-support\n */\n\n/***************************************************************************************************\n * BROWSER POLYFILLS\n */\n\n/**\n * By default, zone.js will patch all possible macroTask and DomEvents\n * user can disable parts of macroTask/DomEvents patch by setting following flags\n * because those flags need to be set before `zone.js` being loaded, and webpack\n * will put import in the top of bundle, so user need to create a separate file\n * in this directory (for example: zone-flags.ts), and put the following flags\n * into that file, and then add the following code before importing zone.js.\n * import './zone-flags';\n *\n * The flags allowed in zone-flags.ts are listed here.\n *\n * The following flags will work for all browsers.\n *\n * (window as any).__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame\n * (window as any).__Zone_disable_on_property = true; // disable patch onProperty such as onclick\n * (window as any).__zone_symbol__UNPATCHED_EVENTS = ['scroll', 'mousemove']; // disable patch specified eventNames\n *\n *  in IE/Edge developer tools, the addEventListener will also be wrapped by zone.js\n *  with the following flag, it will bypass `zone.js` patch for IE/Edge\n *\n *  (window as any).__Zone_enable_cross_context_check = true;\n *\n */\n\n/***************************************************************************************************\n * Zone JS is required by default for Angular itself.\n */\nimport 'zone.js';  // Included with Angular CLI.\n\n\n/***************************************************************************************************\n * APPLICATION IMPORTS\n */\n"
+      ]
+    },
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "4a87f94bd7116ab57156e81c1c200e61a6040847"
+  },
+  "/Users/rayanemoula/code/yoga/front/src/app/services/session.service.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/services/session.service.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -415,17 +438,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/services/session.service.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/services/session.service.ts"
       ],
       "sourcesContent": [
         "import { Injectable } from '@angular/core';\nimport { BehaviorSubject, Observable } from 'rxjs';\nimport { SessionInformation } from '../interfaces/sessionInformation.interface';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class SessionService {\n\n  public isLogged = false;\n  public sessionInformation: SessionInformation | undefined;\n\n  private isLoggedSubject = new BehaviorSubject<boolean>(this.isLogged);\n\n  public $isLogged(): Observable<boolean> {\n    return this.isLoggedSubject.asObservable();\n  }\n\n  public logIn(user: SessionInformation): void {\n    this.sessionInformation = user;\n    this.isLogged = true;\n    this.next();\n  }\n\n  public logOut(): void {\n    this.sessionInformation = undefined;\n    this.isLogged = false;\n    this.next();\n  }\n\n  private next(): void {\n    this.isLoggedSubject.next(this.isLogged);\n  }\n}\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "246f9a07d97e989adc72ca057dbd187e599cfb42"
+    "hash": "00b4a38f9dfe7bdbd50676f7bf5e2d2ba8bdfaa7"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/services/user.service.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/services/user.service.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/services/user.service.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/services/user.service.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -720,17 +743,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/services/user.service.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/services/user.service.ts"
       ],
       "sourcesContent": [
         "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { User } from '../interfaces/user.interface';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class UserService {\n\n  private pathService = 'api/user';\n\n  constructor(private httpClient: HttpClient) { }\n\n  public getById(id: string): Observable<User> {\n    return this.httpClient.get<User>(`${this.pathService}/${id}`);\n  }\n\n  public delete(id: string): Observable<any> {\n    return this.httpClient.delete(`${this.pathService}/${id}`);\n  }\n}\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "85cc6770a625283bfe0279a1d434f5105ba03dda"
+    "hash": "9103b204eaffdc06cf0a7106e4d4143913504df5"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/components/me/me.component.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/components/me/me.component.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/components/me/me.component.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/components/me/me.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -2377,8 +2400,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/components/me/me.component.html",
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/components/me/me.component.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/components/me/me.component.html",
+        "/Users/rayanemoula/code/yoga/front/src/app/components/me/me.component.ts"
       ],
       "sourcesContent": [
         "<div class=\"m3\">\n  <mat-card>\n    <mat-card-title>\n      <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\n        <button mat-icon-button (click)=\"back()\">\n          <mat-icon>arrow_back</mat-icon>\n        </button>\n        <h1>User information</h1>\n      </div>\n    </mat-card-title>\n    <mat-card-content>\n      <div *ngIf=\"user\" fxLayout=\"column\" fxLayoutAlign=\"start center\">\n        <p>Name: {{ user.firstName }} {{ user.lastName | uppercase }}</p>\n        <p>Email: {{ user.email }}</p>\n        <p *ngIf=\"user.admin\" class=\"my2\">You are admin</p>\n        <div *ngIf=\"!user.admin\" fxLayout=\"column\" class=\"my2\" fxLayoutAlign=\"center center\">\n          <p>Delete my account:</p>\n          <button mat-raised-button color=\"warn\" (click)=\"delete()\">\n            <mat-icon>delete</mat-icon>\n            <span class=\"ml1\">Detail</span>\n          </button>\n        </div>\n        <div fxLayoutAlign=\"space-between center\" class=\"p2 w100\">\n\n          <p><i>Create at: </i> {{ user.createdAt | date: 'longDate'}}</p>\n          <p><i>Last update: </i> {{ user.updatedAt| date: 'longDate'}}</p>\n        </div>\n      </div>\n    </mat-card-content>\n  </mat-card>\n</div>\n",
@@ -2386,10 +2409,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "ac509034b8c1e9e219902d7883946a70f5216407"
+    "hash": "288cd56d74bbb4c6849684e8167152959fc9859d"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/components/not-found/not-found.component.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/components/not-found/not-found.component.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/components/not-found/not-found.component.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/components/not-found/not-found.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -2670,8 +2693,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/components/not-found/not-found.component.ts",
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/components/not-found/not-found.component.html"
+        "/Users/rayanemoula/code/yoga/front/src/app/components/not-found/not-found.component.ts",
+        "/Users/rayanemoula/code/yoga/front/src/app/components/not-found/not-found.component.html"
       ],
       "sourcesContent": [
         "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-not-found',\n  templateUrl: './not-found.component.html',\n  styleUrls: ['./not-found.component.scss']\n})\nexport class NotFoundComponent {\n}\n",
@@ -2679,10 +2702,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "c86d26cc09e4bf368e86bac631b1b82c5490a665"
+    "hash": "e67d7859dbf253361609ff705685d3d53da3c3e9"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/guards/auth.guard.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/guards/auth.guard.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/guards/auth.guard.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/guards/auth.guard.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -3014,17 +3037,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/guards/auth.guard.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/guards/auth.guard.ts"
       ],
       "sourcesContent": [
         "import {Injectable} from \"@angular/core\";\nimport {CanActivate, Router} from \"@angular/router\"; \nimport { SessionService } from \"../services/session.service\";\n\n@Injectable({providedIn: 'root'})\nexport class AuthGuard implements CanActivate {\n\n  constructor( \n    private router: Router,\n    private sessionService: SessionService,\n  ) {\n  }\n\n  public canActivate(): boolean {\n    if (!this.sessionService.isLogged) {\n      this.router.navigate(['login']);\n      return false;\n    }\n    return true;\n  }\n}"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "26a393dbfc7d8d547517b1ffd320f5f16afbc8fe"
+    "hash": "15148c9b36085e310d5c28d04e7f1f30325304c8"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/guards/unauth.guard.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/guards/unauth.guard.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/guards/unauth.guard.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/guards/unauth.guard.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -3356,17 +3379,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/guards/unauth.guard.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/guards/unauth.guard.ts"
       ],
       "sourcesContent": [
         "import {Injectable} from \"@angular/core\";\nimport {CanActivate, Router} from \"@angular/router\"; \nimport { SessionService } from \"../services/session.service\";\n\n@Injectable({providedIn: 'root'})\nexport class UnauthGuard implements CanActivate {\n\n  constructor( \n    private router: Router,\n    private sessionService: SessionService,\n  ) {\n  }\n\n  public canActivate(): boolean {\n    if (this.sessionService.isLogged) {\n      this.router.navigate(['rentals']);\n      return false;\n    }\n    return true;\n  }\n}"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "3dce19d3a704c410baa4e7830887938ebad5fa9d"
+    "hash": "ed8e138d968cc5cb6ac7909822e00e9a8c4d63d9"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/app-routing.module.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/app-routing.module.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/app-routing.module.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/app-routing.module.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -3714,17 +3737,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/app-routing.module.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/app-routing.module.ts"
       ],
       "sourcesContent": [
         "import { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\nimport { MeComponent } from './components/me/me.component';\nimport { NotFoundComponent } from './components/not-found/not-found.component';\nimport { AuthGuard } from './guards/auth.guard';\nimport { UnauthGuard } from './guards/unauth.guard';\n\nconst routes: Routes = [\n  {\n    path: '',\n    canActivate: [UnauthGuard],\n    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)\n  },\n  {\n    path: 'sessions',\n    canActivate: [AuthGuard],\n    loadChildren: () => import('./features/sessions/sessions.module').then(m => m.SessionsModule)\n  },\n  {\n    path: 'me',\n    canActivate: [AuthGuard],\n    component: MeComponent\n  },\n  { path: '404', component: NotFoundComponent },\n  { path: '**', redirectTo: '404' }\n];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes)],\n  exports: [RouterModule]\n})\nexport class AppRoutingModule {\n}\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "7ba43090b4356a788a73bd9d403a32d269e51236"
+    "hash": "c4f09cce4840c4128ca1081e126e58d8d0230f3a"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/services/auth.service.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/services/auth.service.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/features/auth/services/auth.service.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/features/auth/services/auth.service.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -4020,17 +4043,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/services/auth.service.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/features/auth/services/auth.service.ts"
       ],
       "sourcesContent": [
         "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { LoginRequest } from '../interfaces/loginRequest.interface';\nimport { RegisterRequest } from '../interfaces/registerRequest.interface';\nimport { SessionInformation } from 'src/app/interfaces/sessionInformation.interface';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class AuthService {\n\n  private pathService = 'api/auth';\n\n  constructor(private httpClient: HttpClient) { }\n\n  public register(registerRequest: RegisterRequest): Observable<void> {\n    return this.httpClient.post<void>(`${this.pathService}/register`, registerRequest);\n  }\n\n  public login(loginRequest: LoginRequest): Observable<SessionInformation> {\n    return this.httpClient.post<SessionInformation>(`${this.pathService}/login`, loginRequest);\n  }\n}\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "8ecdc033e7c0a5d8405c46e266af5e1923daa921"
+    "hash": "e2b057635be75814d50d3c7fab143baf411ce490"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/app.component.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/app.component.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/app.component.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/app.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -5019,8 +5042,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/app.component.html",
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/app.component.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/app.component.html",
+        "/Users/rayanemoula/code/yoga/front/src/app/app.component.ts"
       ],
       "sourcesContent": [
         "<div class=\"app\">\n  <mat-toolbar color=\"primary\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\n    <span>Yoga app</span>\n    <div *ngIf=\"$isLogged() | async; else notLogged\">\n      <span routerLink=\"sessions\" class=\"link\">Sessions</span>\n      <span routerLink=\"me\" class=\"link\">Account</span>\n      <span (click)=\"logout()\" class=\"link\">Logout</span>\n    </div>\n    <ng-template #notLogged>\n      <div>\n        <span routerLink=\"login\" class=\"link\">Login</span>\n        <span routerLink=\"register\" class=\"link\">Register</span>\n      </div>\n    </ng-template>\n  </mat-toolbar>\n  <div>\n    <router-outlet></router-outlet>\n  </div>\n</div>\n",
@@ -5028,10 +5051,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "4f4ad1e3e7a1f5e1c86fd373e307c5e29d22802d"
+    "hash": "9e40e1b1babf042aea16eec3da6372abd66c500b"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/interceptors/jwt.interceptor.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/interceptors/jwt.interceptor.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/interceptors/jwt.interceptor.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/interceptors/jwt.interceptor.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -5348,17 +5371,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/interceptors/jwt.interceptor.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/interceptors/jwt.interceptor.ts"
       ],
       "sourcesContent": [
         "import { HttpHandler, HttpInterceptor, HttpRequest } from \"@angular/common/http\";\nimport { Injectable } from \"@angular/core\";\nimport { SessionService } from '../services/session.service';\n\n@Injectable({ providedIn: 'root' })\nexport class JwtInterceptor implements HttpInterceptor {\n  constructor(private sessionService: SessionService) {}\n\n  public intercept(request: HttpRequest<any>, next: HttpHandler) {\n    if (this.sessionService.isLogged) {\n      request = request.clone({\n        setHeaders: {\n          Authorization: `Bearer ${this.sessionService.sessionInformation!.token}`,\n        },\n      });\n    }\n    return next.handle(request);\n  }\n}\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "17b021f9fa98dec6bbdc3af42bbcab0d9b2f9835"
+    "hash": "cf37caccd3f50ea7d4de972d4f78f6646a14f8cc"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/app.module.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/app.module.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/app.module.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/app.module.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -5565,17 +5588,206 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/app.module.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/app.module.ts"
       ],
       "sourcesContent": [
         "import { NgModule } from '@angular/core';\nimport { MatSnackBarModule } from '@angular/material/snack-bar';\nimport { BrowserModule } from '@angular/platform-browser';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { NotFoundComponent } from './components/not-found/not-found.component';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatToolbarModule } from '@angular/material/toolbar';\nimport { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';\nimport { JwtInterceptor } from './interceptors/jwt.interceptor';\nimport { MatCardModule } from '@angular/material/card';\nimport { FlexLayoutModule } from '@angular/flex-layout';\nimport { MeComponent } from './components/me/me.component';\n\nconst materialModule = [\n  MatButtonModule,\n  MatCardModule,\n  MatIconModule,\n  MatSnackBarModule,\n  MatToolbarModule,\n]\n\n@NgModule({\n  declarations: [\n    AppComponent,\n    NotFoundComponent,\n    MeComponent,\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule,\n    BrowserAnimationsModule, \n    FlexLayoutModule,\n    HttpClientModule,\n    ...materialModule\n  ],\n  providers: [\n    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },\n  ],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "59415374a05f1a9479aa7c9a0d0d4b8bc2bba305"
+    "hash": "6f121ed0f85529119104c95b1fc3489ff8c59d64"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/components/login/login.component.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/components/login/login.component.ts",
+  "/Users/rayanemoula/code/yoga/front/src/environments/environment.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/environments/environment.ts",
+    "statementMap": {
+      "0": {
+        "start": {
+          "line": 1,
+          "column": 27
+        },
+        "end": {
+          "line": 4,
+          "column": 1
+        }
+      }
+    },
+    "fnMap": {},
+    "branchMap": {},
+    "s": {
+      "0": 3
+    },
+    "f": {},
+    "b": {},
+    "inputSourceMap": {
+      "version": 3,
+      "mappings": "AAAA,OAAO,MAAMA,WAAW,GAAG;EACzBC,OAAO,EAAE,qBADgB;EAEzBC,UAAU,EAAE;AAFa,CAApB",
+      "names": [
+        "environment",
+        "baseUrl",
+        "production"
+      ],
+      "sourceRoot": "",
+      "sources": [
+        "/Users/rayanemoula/code/yoga/front/src/environments/environment.ts"
+      ],
+      "sourcesContent": [
+        "export const environment = {\n  baseUrl: 'localhost:8080/api/',\n  production: false\n};\n"
+      ]
+    },
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "b302d4a82da0a3d73894a309897b6275e09e28c1"
+  },
+  "/Users/rayanemoula/code/yoga/front/src/main.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/main.ts",
+    "statementMap": {
+      "0": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 1
+        }
+      },
+      "1": {
+        "start": {
+          "line": 7,
+          "column": 2
+        },
+        "end": {
+          "line": 7,
+          "column": 19
+        }
+      },
+      "2": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 98
+        }
+      },
+      "3": {
+        "start": {
+          "line": 10,
+          "column": 78
+        },
+        "end": {
+          "line": 10,
+          "column": 96
+        }
+      }
+    },
+    "fnMap": {
+      "0": {
+        "name": "(anonymous_0)",
+        "decl": {
+          "start": {
+            "line": 10,
+            "column": 71
+          },
+          "end": {
+            "line": 10,
+            "column": 72
+          }
+        },
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 78
+          },
+          "end": {
+            "line": 10,
+            "column": 96
+          }
+        },
+        "line": 10
+      }
+    },
+    "branchMap": {
+      "0": {
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 0
+          },
+          "end": {
+            "line": 8,
+            "column": 1
+          }
+        },
+        "type": "if",
+        "locations": [
+          {
+            "start": {
+              "line": 6,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 1
+            }
+          },
+          {
+            "start": {
+              "line": 6,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 1
+            }
+          }
+        ],
+        "line": 6
+      }
+    },
+    "s": {
+      "0": 3,
+      "1": 0,
+      "2": 3,
+      "3": 0
+    },
+    "f": {
+      "0": 0
+    },
+    "b": {
+      "0": [
+        0,
+        3
+      ]
+    },
+    "inputSourceMap": {
+      "version": 3,
+      "mappings": ";AAAA,SAASA,cAAT,QAA+B,eAA/B;AAGA,SAASC,SAAT,QAA0B,kBAA1B;AACA,SAASC,WAAT,QAA4B,4BAA5B;;AAEA,IAAIA,WAAW,CAACC,UAAhB,EAA4B;EAC1BH,cAAc;AACf;;AAEDI,sCAAyBC,eAAzB,CAAyCJ,SAAzC,EACGK,KADH,CACSC,GAAG,IAAIC,OAAO,CAACC,KAAR,CAAcF,GAAd,CADhB",
+      "names": [
+        "enableProdMode",
+        "AppModule",
+        "environment",
+        "production",
+        "__NgCli_bootstrap_1",
+        "bootstrapModule",
+        "catch",
+        "err",
+        "console",
+        "error"
+      ],
+      "sourceRoot": "",
+      "sources": [
+        "/Users/rayanemoula/code/yoga/front/src/main.ts"
+      ],
+      "sourcesContent": [
+        "import { enableProdMode } from '@angular/core';\nimport { platformBrowserDynamic } from '@angular/platform-browser-dynamic';\n\nimport { AppModule } from './app/app.module';\nimport { environment } from './environments/environment';\n\nif (environment.production) {\n  enableProdMode();\n}\n\nplatformBrowserDynamic().bootstrapModule(AppModule)\n  .catch(err => console.error(err));\n"
+      ]
+    },
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "7224542b744e3ad1c6da079fe6902c6b11455ced"
+  },
+  "/Users/rayanemoula/code/yoga/front/src/app/features/auth/components/login/login.component.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/features/auth/components/login/login.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -6743,8 +6955,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/components/login/login.component.ts",
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/components/login/login.component.html"
+        "/Users/rayanemoula/code/yoga/front/src/app/features/auth/components/login/login.component.ts",
+        "/Users/rayanemoula/code/yoga/front/src/app/features/auth/components/login/login.component.html"
       ],
       "sourcesContent": [
         "import { Component } from '@angular/core';\nimport { FormBuilder, Validators } from '@angular/forms';\nimport { Router } from '@angular/router';\nimport { SessionInformation } from 'src/app/interfaces/sessionInformation.interface';\nimport { SessionService } from 'src/app/services/session.service';\nimport { LoginRequest } from '../../interfaces/loginRequest.interface';\nimport { AuthService } from '../../services/auth.service';\n\n@Component({\n  selector: 'app-login',\n  templateUrl: './login.component.html',\n  styleUrls: ['./login.component.scss']\n})\nexport class LoginComponent {\n  public hide = true;\n  public onError = false;\n\n  public form = this.fb.group({\n    email: [\n      '',\n      [\n        Validators.required,\n        Validators.email\n      ]\n    ],\n    password: [\n      '',\n      [\n        Validators.required,\n        Validators.min(3)\n      ]\n    ]\n  });\n\n  constructor(private authService: AuthService,\n              private fb: FormBuilder,\n              private router: Router,\n              private sessionService: SessionService) {\n  }\n\n  public submit(): void {\n    const loginRequest = this.form.value as LoginRequest;\n    this.authService.login(loginRequest).subscribe({\n      next: (response: SessionInformation) => {\n        this.sessionService.logIn(response);\n        this.router.navigate(['/sessions']);\n      },\n      error: error => this.onError = true,\n    });\n  }\n}\n",
@@ -6752,10 +6964,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "cb805a580801a3436f4f53cd46934db439fc964e"
+    "hash": "75a2fd2c550e8e2c6c97bee41c1501fdc1ee5af3"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/components/register/register.component.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/components/register/register.component.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/features/auth/components/register/register.component.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/features/auth/components/register/register.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -7731,8 +7943,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/components/register/register.component.ts",
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/components/register/register.component.html"
+        "/Users/rayanemoula/code/yoga/front/src/app/features/auth/components/register/register.component.ts",
+        "/Users/rayanemoula/code/yoga/front/src/app/features/auth/components/register/register.component.html"
       ],
       "sourcesContent": [
         "import { Component } from '@angular/core';\nimport { FormBuilder, Validators } from '@angular/forms';\nimport { Router } from '@angular/router';\nimport { AuthService } from '../../services/auth.service';\nimport { RegisterRequest } from '../../interfaces/registerRequest.interface';\n\n@Component({\n  selector: 'app-register',\n  templateUrl: './register.component.html',\n  styleUrls: ['./register.component.scss']\n})\nexport class RegisterComponent {\n\n  public onError = false;\n\n  public form = this.fb.group({\n    email: [\n      '',\n      [\n        Validators.required,\n        Validators.email\n      ]\n    ],\n    firstName: [\n      '',\n      [\n        Validators.required,\n        Validators.min(3),\n        Validators.max(20)\n      ]\n    ],\n    lastName: [\n      '',\n      [\n        Validators.required,\n        Validators.min(3),\n        Validators.max(20)\n      ]\n    ],\n    password: [\n      '',\n      [\n        Validators.required,\n        Validators.min(3),\n        Validators.max(40)\n      ]\n    ]\n  });\n\n  constructor(private authService: AuthService,\n              private fb: FormBuilder,\n              private router: Router) {\n  }\n\n  public submit(): void {\n    const registerRequest = this.form.value as RegisterRequest;\n    this.authService.register(registerRequest).subscribe({\n        next: (_: void) => this.router.navigate(['/login']),\n        error: _ => this.onError = true,\n      }\n    );\n  }\n\n}\n",
@@ -7740,10 +7952,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "8c9d548da1c323c68770dc5732e93e519d74c48d"
+    "hash": "ad0b98ae5ffc23f8fa07d4e81bc27bedb9f9539c"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/auth-routing.module.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/auth-routing.module.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/features/auth/auth-routing.module.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/features/auth/auth-routing.module.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -7939,17 +8151,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/auth-routing.module.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/features/auth/auth-routing.module.ts"
       ],
       "sourcesContent": [
         "import { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\nimport { LoginComponent } from './components/login/login.component';\nimport { RegisterComponent } from './components/register/register.component';\n\n\nconst routes: Routes = [\n  { title: 'Login', path: 'login', component: LoginComponent },\n  { title: 'Register', path: 'register', component: RegisterComponent }\n];\n\n@NgModule({\n  imports: [RouterModule.forChild(routes)],\n  exports: [RouterModule]\n})\nexport class AuthRoutingModule { }\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "bd4964757a93e1cdfbd1c8f78b53d4ae7984f052"
+    "hash": "d55d8921abfa7d0d3c8eee21438ac4adba13c6d2"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/auth.module.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/auth.module.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/features/auth/auth.module.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/features/auth/auth.module.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -8148,17 +8360,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/auth/auth.module.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/features/auth/auth.module.ts"
       ],
       "sourcesContent": [
         "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { AuthRoutingModule } from './auth-routing.module';\nimport { RegisterComponent } from './components/register/register.component';\nimport { LoginComponent } from './components/login/login.component';\nimport { MatCardModule } from '@angular/material/card';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatInputModule } from '@angular/material/input';\nimport { FlexLayoutModule } from '@angular/flex-layout';\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\nimport { MatIconModule } from '@angular/material/icon';\n\nconst materialModules = [\n  MatButtonModule,\n  MatCardModule,\n  MatFormFieldModule,\n  MatIconModule,\n  MatInputModule\n]\n\n@NgModule({\n  declarations: [\n    RegisterComponent,\n    LoginComponent\n  ],\n  imports: [\n    AuthRoutingModule,\n    CommonModule,\n    FlexLayoutModule,\n    FormsModule,\n    ReactiveFormsModule,\n    ...materialModules\n  ]\n})\nexport class AuthModule { }\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "1c295bece8f23891dc8756a336c7802ddda58baa"
+    "hash": "e9927e92f865e9e445dbd5f9546c869d99f5f87b"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/services/session-api.service.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/services/session-api.service.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/services/session-api.service.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/services/session-api.service.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -8642,17 +8854,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/services/session-api.service.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/services/session-api.service.ts"
       ],
       "sourcesContent": [
         "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { Session } from '../interfaces/session.interface';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class SessionApiService {\n\n  private pathService = 'api/session';\n\n  constructor(private httpClient: HttpClient) {\n  }\n\n  public all(): Observable<Session[]> {\n    return this.httpClient.get<Session[]>(this.pathService);\n  }\n\n  public detail(id: string): Observable<Session> {\n    return this.httpClient.get<Session>(`${this.pathService}/${id}`);\n  }\n\n  public delete(id: string): Observable<any> {\n    return this.httpClient.delete(`${this.pathService}/${id}`);\n  }\n\n  public create(session: Session): Observable<Session> {\n    return this.httpClient.post<Session>(this.pathService, session);\n  }\n\n  public update(id: string, session: Session): Observable<Session> {\n    return this.httpClient.put<Session>(`${this.pathService}/${id}`, session);\n  }\n\n  public participate(id: string, userId: string): Observable<void> {\n    return this.httpClient.post<void>(`${this.pathService}/${id}/participate/${userId}`, null);\n  }\n\n  public unParticipate(id: string, userId: string): Observable<void> {\n    return this.httpClient.delete<void>(`${this.pathService}/${id}/participate/${userId}`);\n  }\n\n}\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "3581b79338ce57eba6e5c7106c6d06ad41181118"
+    "hash": "08a9e52d3430334934f9d1d2c643052b7d923272"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/services/teacher.service.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/services/teacher.service.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/services/teacher.service.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/services/teacher.service.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -8947,17 +9159,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/services/teacher.service.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/services/teacher.service.ts"
       ],
       "sourcesContent": [
         "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { Teacher } from '../interfaces/teacher.interface';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class TeacherService {\n\n  private pathService = 'api/teacher';\n\n  constructor(private httpClient: HttpClient) { }\n\n  public all(): Observable<Teacher[]> {\n    return this.httpClient.get<Teacher[]>(this.pathService);\n  }\n\n  public detail(id: string): Observable<Teacher> {\n    return this.httpClient.get<Teacher>(`${this.pathService}/${id}`);\n  }\n}\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "bc2ad1c079a1cac9f55f2b37efc8b00618078a4b"
+    "hash": "ef25619bb1247b0af35bf27d40ba1b1b521ea7a2"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/components/detail/detail.component.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/components/detail/detail.component.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/components/detail/detail.component.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/components/detail/detail.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -12067,8 +12279,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/components/detail/detail.component.html",
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/components/detail/detail.component.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/components/detail/detail.component.html",
+        "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/components/detail/detail.component.ts"
       ],
       "sourcesContent": [
         "<div class=\"m3\">\n  <mat-card *ngIf=\"session\">\n    <mat-card-title>\n      <div fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\n        <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\n          <button mat-icon-button (click)=\"back()\">\n            <mat-icon>arrow_back</mat-icon>\n          </button>\n          <h1>{{session.name | titlecase}}</h1>\n        </div>\n        <div>\n          <button *ngIf=\"isAdmin\" mat-raised-button color=\"warn\" (click)=\"delete()\">\n            <mat-icon>delete</mat-icon>\n            <span class=\"ml1\">Delete</span>\n          </button>\n          <div *ngIf=\"!isAdmin\">\n            <button *ngIf=\"!isParticipate\" mat-raised-button color=\"primary\" (click)=\"participate()\">\n              <mat-icon>person_add</mat-icon>\n              <span class=\"ml1\">Participate</span>\n            </button>\n            <button *ngIf=\"isParticipate\" mat-raised-button color=\"warn\" (click)=\"unParticipate()\">\n              <mat-icon>person_remove</mat-icon>\n              <span class=\"ml1\">Do not participate</span>\n            </button>\n\n          </div>\n\n\n        </div>\n      </div>\n    </mat-card-title>\n    <mat-card-subtitle *ngIf=\"teacher\">\n      <div fxLayoutAlign=\"start center\" class=\"ml3\">\n        <mat-icon>\n          people\n        </mat-icon>\n        <span class=\"ml1\">{{ teacher.firstName }} {{ teacher.lastName | uppercase }}</span>\n      </div>\n    </mat-card-subtitle>\n    <div mat-card-image fxLayoutAlign=\"center center\">\n      <img class=\"picture\" src=\"assets/sessions.png\" alt=\"Yoga session\">\n    </div>\n    <mat-card-content>\n      <div class=\"my2\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\n        <div fxLayoutAlign=\"start center\">\n          <mat-icon>\n            group\n          </mat-icon>\n          <span class=\"ml1\">{{ session.users.length }} attendees</span>\n        </div>\n        <div fxLayoutAlign=\"start center\">\n          <mat-icon>\n            calendar_month\n          </mat-icon>\n          <span class=\"ml1\">{{ session.date | date: 'longDate'}}</span>\n        </div>\n      </div>\n      <div class=\"description\">\n        <p>Description:</p>\n        {{ session.description }}\n        <br>\n      </div>\n      <div class=\"date\" class=\"my2\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\n        <div class=\"created\"><i>Create at: </i> {{ session.createdAt| date: 'longDate'}}</div>\n        <div class=\"updated\"><i>Last update: </i> {{ session.updatedAt| date: 'longDate'}}</div>\n      </div>\n    </mat-card-content>\n  </mat-card>\n</div>\n",
@@ -12076,10 +12288,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "c261a3b5a66c5df0725e206672bb17730d18586a"
+    "hash": "71b296ee52800c15735e838377ce658ec002e4d0"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/components/form/form.component.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/components/form/form.component.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/components/form/form.component.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/components/form/form.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -14346,8 +14558,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/components/form/form.component.ts",
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/components/form/form.component.html"
+        "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/components/form/form.component.ts",
+        "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/components/form/form.component.html"
       ],
       "sourcesContent": [
         "import { Component, OnInit } from '@angular/core';\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\nimport { MatSnackBar } from '@angular/material/snack-bar';\nimport { ActivatedRoute, Router } from '@angular/router';\nimport { SessionService } from '../../../../services/session.service';\nimport { TeacherService } from '../../../../services/teacher.service';\nimport { Session } from '../../interfaces/session.interface';\nimport { SessionApiService } from '../../services/session-api.service';\n\n@Component({\n  selector: 'app-form',\n  templateUrl: './form.component.html',\n  styleUrls: ['./form.component.scss']\n})\nexport class FormComponent implements OnInit {\n\n  public onUpdate: boolean = false;\n  public sessionForm: FormGroup | undefined;\n  public teachers$ = this.teacherService.all();\n  private id: string | undefined;\n\n  constructor(\n    private route: ActivatedRoute,\n    private fb: FormBuilder,\n    private matSnackBar: MatSnackBar,\n    private sessionApiService: SessionApiService,\n    private sessionService: SessionService,\n    private teacherService: TeacherService,\n    private router: Router\n  ) {\n  }\n\n  public ngOnInit(): void {\n    if (!this.sessionService.sessionInformation!.admin) {\n      this.router.navigate(['/sessions']);\n    }\n    const url = this.router.url;\n    if (url.includes('update')) {\n      this.onUpdate = true;\n      this.id = this.route.snapshot.paramMap.get('id')!;\n      this.sessionApiService\n        .detail(this.id)\n        .subscribe((session: Session) => this.initForm(session));\n    } else {\n      this.initForm();\n    }\n  }\n\n  public submit(): void {\n    const session = this.sessionForm?.value as Session;\n\n    if (!this.onUpdate) {\n      this.sessionApiService\n        .create(session)\n        .subscribe((_: Session) => this.exitPage('Session created !'));\n    } else {\n      this.sessionApiService\n        .update(this.id!, session)\n        .subscribe((_: Session) => this.exitPage('Session updated !'));\n    }\n  }\n\n  private initForm(session?: Session): void {\n    this.sessionForm = this.fb.group({\n      name: [\n        session ? session.name : '',\n        [Validators.required]\n      ],\n      date: [\n        session ? new Date(session.date).toISOString().split('T')[0] : '',\n        [Validators.required]\n      ],\n      teacher_id: [\n        session ? session.teacher_id : '',\n        [Validators.required]\n      ],\n      description: [\n        session ? session.description : '',\n        [\n          Validators.required,\n          Validators.max(2000)\n        ]\n      ],\n    });\n  }\n\n  private exitPage(message: string): void {\n    this.matSnackBar.open(message, 'Close', { duration: 3000 });\n    this.router.navigate(['sessions']);\n  }\n}\n",
@@ -14355,10 +14567,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "67affddb0eabba407098464304714967bf31fd52"
+    "hash": "3206526349fc74e519411a41d8a28714fecf4bfd"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/components/list/list.component.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/components/list/list.component.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/components/list/list.component.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/components/list/list.component.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -15714,47 +15926,47 @@
       "17": 0,
       "18": 0,
       "19": 3,
-      "20": 3,
-      "21": 9,
-      "22": 3,
-      "23": 3,
-      "24": 3,
-      "25": 3,
-      "26": 3,
-      "27": 3,
-      "28": 3,
-      "29": 3,
-      "30": 3,
-      "31": 3,
-      "32": 3,
-      "33": 3,
-      "34": 3,
-      "35": 3,
-      "36": 3,
-      "37": 3,
-      "38": 3,
-      "39": 3,
-      "40": 3,
-      "41": 3,
-      "42": 3,
-      "43": 9,
-      "44": 6,
-      "45": 6,
-      "46": 6,
-      "47": 6,
-      "48": 6,
-      "49": 6,
-      "50": 6,
-      "51": 6,
-      "52": 6,
-      "53": 6,
-      "54": 6,
-      "55": 6,
+      "20": 6,
+      "21": 18,
+      "22": 6,
+      "23": 6,
+      "24": 6,
+      "25": 6,
+      "26": 6,
+      "27": 6,
+      "28": 6,
+      "29": 6,
+      "30": 6,
+      "31": 6,
+      "32": 6,
+      "33": 6,
+      "34": 6,
+      "35": 6,
+      "36": 6,
+      "37": 6,
+      "38": 6,
+      "39": 6,
+      "40": 6,
+      "41": 6,
+      "42": 6,
+      "43": 18,
+      "44": 12,
+      "45": 12,
+      "46": 12,
+      "47": 12,
+      "48": 12,
+      "49": 12,
+      "50": 12,
+      "51": 12,
+      "52": 12,
+      "53": 12,
+      "54": 12,
+      "55": 12,
       "56": 3,
       "57": 3,
       "58": 3,
       "59": 3,
-      "60": 30,
+      "60": 36,
       "61": 3,
       "62": 3,
       "63": 3,
@@ -15779,11 +15991,11 @@
       "0": 0,
       "1": 0,
       "2": 0,
-      "3": 3,
-      "4": 9,
+      "3": 6,
+      "4": 18,
       "5": 3,
       "6": 3,
-      "7": 30,
+      "7": 36,
       "8": 3,
       "9": 27
     },
@@ -15801,12 +16013,12 @@
         0
       ],
       "3": [
-        3,
-        6
+        6,
+        12
       ],
       "4": [
-        6,
-        3
+        12,
+        6
       ],
       "5": [
         3,
@@ -15841,8 +16053,8 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/components/list/list.component.html",
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/components/list/list.component.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/components/list/list.component.html",
+        "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/components/list/list.component.ts"
       ],
       "sourcesContent": [
         "<div class=\"list\">\n  <mat-card>\n    <mat-card-header fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\n      <mat-card-title class=\"m0\">Rentals available</mat-card-title>\n      <button *ngIf=\"user!.admin\" mat-raised-button color=\"primary\" routerLink=\"create\">\n        <mat-icon>add</mat-icon>\n        <span class=\"ml1\">Create</span>\n      </button>\n    </mat-card-header>\n    <div class=\"items mt2\" fxLayout=\"row wrap\" fxLayout.lt-md=\"column\">\n      <mat-card class=\"item\" *ngFor=\"let session of (sessions$ | async)\" fxFlex>\n        <mat-card-header>\n          <mat-card-title>{{ session.name }}</mat-card-title>\n          <mat-card-subtitle>\n            Session on {{ session.date | date: 'longDate'}}\n          </mat-card-subtitle>\n        </mat-card-header>\n        <div mat-card-image fxLayoutAlign=\"center center\">\n          <img class=\"picture\" src=\"assets/sessions.png\" alt=\"Yoga session\">\n        </div>\n        <mat-card-content>\n          <p>\n            {{ session.description }}\n          </p>\n        </mat-card-content>\n        <mat-card-actions>\n          <button mat-raised-button color=\"primary\" [routerLink]=\"['detail',session.id]\">\n            <mat-icon>search</mat-icon>\n            <span class=\"ml1\">Detail</span>\n          </button>\n          <button *ngIf=\"user!.admin\" mat-raised-button color=\"primary\"\n                  [routerLink]=\"['update',session.id]\">\n            <mat-icon>edit</mat-icon>\n            <span class=\"ml1\">Edit</span>\n          </button>\n        </mat-card-actions>\n      </mat-card>\n    </div>\n  </mat-card>\n</div>\n",
@@ -15850,10 +16062,10 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "772e0b8c048b6861bc2c314de37d126030d6811e"
+    "hash": "4f5913dbc96a85154e5f5e8115825b8d02c3b821"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/sessions-routing.module.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/sessions-routing.module.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/sessions-routing.module.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/sessions-routing.module.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -16050,17 +16262,17 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/sessions-routing.module.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/sessions-routing.module.ts"
       ],
       "sourcesContent": [
         "import { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\nimport { DetailComponent } from './components/detail/detail.component';\nimport { FormComponent } from './components/form/form.component';\nimport { ListComponent } from './components/list/list.component';\n\nconst routes: Routes = [\n  { path: '', title: 'Sessions', component: ListComponent },\n  { path: 'detail/:id', title: 'Sessions - detail', component: DetailComponent },\n  { path: 'create', title: 'Sessions - create', component: FormComponent },\n  { path: 'update/:id', title: 'Sessions - update', component: FormComponent }\n];\n\n@NgModule({\n  imports: [RouterModule.forChild(routes)],\n  exports: [RouterModule]\n})\nexport class SessionsRoutingModule {\n}\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "22dab486f665f5dc4b6b0da245403c6e9c566ef0"
+    "hash": "5384f2d2ee1e4089cf1262a7a50bacc1905d5571"
   },
-  "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/sessions.module.ts": {
-    "path": "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/sessions.module.ts",
+  "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/sessions.module.ts": {
+    "path": "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/sessions.module.ts",
     "statementMap": {
       "0": {
         "start": {
@@ -16273,13 +16485,13 @@
       ],
       "sourceRoot": "",
       "sources": [
-        "/Users/rayanemoula/code/Testez-une-application-full-stack/front/src/app/features/sessions/sessions.module.ts"
+        "/Users/rayanemoula/code/yoga/front/src/app/features/sessions/sessions.module.ts"
       ],
       "sourcesContent": [
         "import { NgModule } from '@angular/core';\nimport { CommonModule, registerLocaleData } from '@angular/common';\nimport { FlexLayoutModule } from '@angular/flex-layout';\nimport { ReactiveFormsModule } from '@angular/forms';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatCardModule } from '@angular/material/card';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatInputModule } from '@angular/material/input';\nimport { MatSelectModule } from '@angular/material/select';\nimport { MatSnackBarModule } from '@angular/material/snack-bar';\nimport { ListComponent } from './components/list/list.component';\nimport { FormComponent } from './components/form/form.component';\nimport { DetailComponent } from './components/detail/detail.component';\nimport { SessionsRoutingModule } from './sessions-routing.module';\nimport localeFr from '@angular/common/locales/fr';\nregisterLocaleData(localeFr);\n\nconst materialModules = [\n  MatButtonModule,\n  MatCardModule,\n  MatFormFieldModule,\n  MatIconModule,\n  MatInputModule,\n  MatSnackBarModule,\n  MatSelectModule\n];\n\n@NgModule({\n  declarations: [\n    ListComponent,\n    FormComponent,\n    DetailComponent\n  ],\n  imports: [\n    CommonModule,\n    FlexLayoutModule,\n    ReactiveFormsModule,\n    SessionsRoutingModule,\n    ...materialModules\n  ]\n})\nexport class SessionsModule { }\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "f7816d6b372bea5cd5398414675be87bae7c30d9"
+    "hash": "b3ace9a4445e78bccbf3e52a1881aa7e90bab387"
   }
 }
