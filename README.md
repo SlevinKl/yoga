@@ -54,11 +54,11 @@ Open the frontend folder in VsCode.
 > npm run e2e
 - To view coverage (run npm run e2e before):
 > npm run e2e:coverage
-The report is available here:
+- The report is available here:
 > front/coverage/lcov-report/index.html
 
 #### Unitary Test
-To launch unit tests:
+- To launch unit tests
 > npm run test
-For following changes:
+- For following changes
 > npm run test:watch
