@@ -1,4 +1,4 @@
-!SESSION 2024-01-05 14:53:23.030 -----------------------------------------------
+!SESSION 2024-02-23 09:49:21.891 -----------------------------------------------
 eclipse.buildId=4.29.0.20230907-1200
 java.version=21
 java.vendor=Oracle Corporation
@@ -6,18 +6,18 @@ BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=fr_FR
 Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/rayanemoula/.eclipse_keyring
 Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/rayanemoula/.eclipse_keyring
 
-!ENTRY org.eclipse.emf.ecore 2 0 2024-01-05 14:53:27.790
+!ENTRY org.eclipse.emf.ecore 2 0 2024-02-23 09:49:25.307
 !MESSAGE Both 'org.eclipse.jst.j2ee.core' and 'org.eclipse.jst.j2ee.core' register a package for 'application.xmi'
 
-!ENTRY ch.qos.logback.classic 1 0 2024-01-05 14:53:28.094
+!ENTRY ch.qos.logback.classic 1 0 2024-02-23 09:49:25.611
 !MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
 
-!ENTRY ch.qos.logback.classic 1 0 2024-01-05 14:53:57.887
-!MESSAGE Logback config file: /Users/rayanemoula/code/Testez-une-application-full-stack/back/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.2.0.20230625-0847.xml
+!ENTRY ch.qos.logback.classic 1 0 2024-02-23 09:49:56.707
+!MESSAGE Logback config file: /Users/rayanemoula/code/yoga/back/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.2.0.20230625-0847.xml
 
-!ENTRY org.eclipse.jface 2 0 2024-01-05 14:54:00.288
+!ENTRY org.eclipse.jface 2 0 2024-02-23 09:49:59.148
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
-!SUBENTRY 1 org.eclipse.jface 2 0 2024-01-05 14:54:00.288
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-02-23 09:49:59.148
 !MESSAGE A conflict occurred for COMMAND+SHIFT+T:
 Binding(COMMAND+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
